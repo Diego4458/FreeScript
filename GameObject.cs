@@ -10,6 +10,7 @@ namespace FreeScript
 {
     class GameObject
     {
+        private String Name;
         private Panel Object = new Panel();
         private Vector2D Position;
         private Vector2D Size;
@@ -22,8 +23,39 @@ namespace FreeScript
 
         public void Update()
         {
+            ImOutOfBound();
             this.UpdateLocation();
             this.UpdateSize();
+        }
+
+        public void SetName( String Nome)
+        {
+            Name = Nome;
+        }
+
+        public String GetName()
+        {
+            return Name;
+        }
+
+        void ImOutOfBound()
+        {
+            if (Position.X < 0)
+            {
+                Position.X = 0;
+            }
+            if (Position.Y < 0)
+            {
+                Position.Y = 0;
+            }
+            if (Position.X > 500)
+            {
+                Position.X = 500;
+            }
+            if (Position.Y > 500)
+            {
+                Position.Y = 500;
+            }
         }
 
         void UpdateLocation()
