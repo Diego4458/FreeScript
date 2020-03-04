@@ -14,13 +14,22 @@ namespace FreeScript
         private Panel Object = new Panel();
         private Vector2D Position;
         private Vector2D Size;
+        Form forms;
 
-        public GameObject()
+        public GameObject(Form frorms)
         {
+            forms = frorms;
             this.SetLocation(new Vector2D { X = 0, Y = 0 });
             this.SetSize(new Vector2D { X = 100, Y = 100 });
             Object.BackColor = Color.DarkBlue;
+            Object.Click += new System.EventHandler(Click);
             Object.Show();
+        }
+
+        public void Click(object sender, EventArgs e)
+        {
+            String Fala = String.Format("X:{0} Y:{1}", Control.MousePosition.X - forms.Location.X, Control.MousePosition.Y - forms.Location.Y);
+            Console.WriteLine(Fala);
         }
 
         public void Update()

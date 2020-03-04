@@ -18,9 +18,10 @@ namespace FreeScript.Managers
         {
             Screen = screen;
         }
+
         public void Add(String Name)
         {
-            GameObject Novo = new GameObject();
+            GameObject Novo = new GameObject(Screen);
             Novo.SetName(Name);
             Screen.Controls.Add(Novo.ReturnGameObject());
             Objects.Add(Novo);
@@ -28,7 +29,7 @@ namespace FreeScript.Managers
 
         public void Add()
         {
-            GameObject Novo = new GameObject();
+            GameObject Novo = new GameObject(Screen);
             Screen.Controls.Add(Novo.ReturnGameObject());
             Objects.Add(Novo);
         }
@@ -41,7 +42,7 @@ namespace FreeScript.Managers
             }
         }
 
-        public GameObject FindByName(String Nome)
+        public GameObject FindObjectByName(String Nome)
         {
             for(int x=0;x< Objects.Count;x++)
             {
@@ -49,6 +50,33 @@ namespace FreeScript.Managers
                 {
                     return Objects[x];
                 }
+            }
+            return null;
+        }
+
+        public GameObject[] FindObjectsByName(String Nome)
+        {
+            List<GameObject> objetos = new List<GameObject>();
+            for (int x = 0; x < Objects.Count; x++)
+            {
+                if (Objects[x].GetName() == Nome)
+                {
+                    objetos.Add(Objects[x]);
+                }
+            }
+            if(objetos.Count > 0)
+            {
+                return objetos.ToArray();
+            }
+            return null;
+        }
+
+
+        public GameObject[] GetAll()
+        {
+            if (Objects.Count > 0)
+            {
+                return Objects.ToArray();
             }
             return null;
         }
