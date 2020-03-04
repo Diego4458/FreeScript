@@ -40,7 +40,7 @@ namespace FreeScript
         static Form Setup()
         {
             Form Render = new Form();
-            Render.Size = new Size(500,500);
+            Render.Size = new Size(500, 500);
             Render.FormBorderStyle = FormBorderStyle.None;
             Render.StartPosition = FormStartPosition.CenterScreen;
             Render.Show();
@@ -55,24 +55,69 @@ namespace FreeScript
             Objects.Add(new GameObject());
             Objects[0].SetLocation(new Vector2D() { X = 0, Y = 0 });
             Objects[0].SetSize(new Vector2D() { X = 100, Y = 100 });
+            Vector2D DAle = RandomVector();
             Render.Controls.Add(Objects[0].ReturnGameObject());
             while(true)
             {
-                CommandHandler(Render);
-                if (Objects[0].ofCourse())
+                switch (Objects[0].ofCourse())
                 {
-
+                    case Directions.Noone:
+                        {
+                            Console.WriteLine(Objects[0].GetLocation().X + " " + Objects[0].GetLocation().Y);
+                        }
+                        break;
+                    case Directions.LeftUp:
+                    case Directions.RightDown:
+                    case Directions.RightUp:
+                    case Directions.LeftDown:
+                        {
+                            DAle = RandomVector();
+                        }
+                        break;
                 }
-                Objects[0].AddLocation(new Vector2D() { X = 1, Y = 1 });
+
+                Objects[0].AddLocation(new Vector2D() { X = DAle.X, Y = DAle.Y });
 
                 for (int x=0;x< Objects.Count;x++)
                 {
                     Objects[x].Update();
                 }
+                Thread.Sleep(10);
                 
             }
             IsRunning = false;
         }
+
+        public static Vector2D RandomVector()
+        {
+            Vector2D dale = new Vector2D();
+            Random rnd = new Random();
+            Thread.Sleep(1);
+            int a = rnd.Next(0, 2);
+            Thread.Sleep(1);
+            if (a == 0)
+            {
+              dale.X -= rnd.Next(0, 2);
+            }
+            else
+            {
+               dale.X = rnd.Next(0, 2);
+            }
+            Thread.Sleep(1);
+            a = rnd.Next(0, 2);
+            Thread.Sleep(1);
+            if (a == 0)
+            {
+                dale.Y += rnd.Next(0, 2);
+            }
+            else
+            {
+                dale.Y -= rnd.Next(0, 2);
+            }
+            return dale;
+
+        }
+
 
         static void CommandHandler(Form Render)
         {

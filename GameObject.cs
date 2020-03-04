@@ -43,43 +43,48 @@ namespace FreeScript
             {
                 Position.X = 0;
             }
-            if (Position.Y < 0)
+            else if (Position.Y < 0)
             {
                 Position.Y = 0;
             }
-            if (Position.X+Size.X >= 500 )
+            else if (Position.Y+Size.X >= 500 && Position.X + Size.X >= 500)
+            {
+                Position.X = 500 - Size.X;
+                Position.Y = 500 - Size.Y;
+            }
+            else if (Position.X+Size.X >= 500 )
             {
                 Position.X = 500 - Size.X;
             }
-            else if (Position.Y >= 500)
+            else if (Position.Y+ Size.Y >= 500)
             {
-                Position.Y = 500;
+                Position.Y = 500 - Size.Y;
             }
-            else
-            {
-                this.UpdateLocation();
-            }
+            this.UpdateLocation();
         }
 
-        public bool ofCourse()
+        public Directions ofCourse()
         {
-            if (Position.X < 0)
+            if (Position.X <= 0 && Position.Y <= 0)
             {
-                return true;
+                return Directions.LeftUp;
             }
-            if (Position.Y < 0)
+            else if (Position.X <= 0 && Position.Y + Size.Y >= 500)
             {
-                return true;
+                return Directions.LeftDown;
             }
-            if (Position.X + Size.X >= 500)
+            else if (Position.X + Size.X  >= 500 && Position.Y + Size.Y >= 500)
             {
-                return true;
+                return Directions.RightDown;
             }
-            else if (Position.Y >= 500)
+            else if (Position.X + Size.X >= 500 && Position.Y  <= 0)
             {
-                return true;
+                return Directions.RightUp;
             }
-            return false;
+            else
+            { 
+            return Directions.Noone ;
+            }
         }
 
         void UpdateLocation()
