@@ -17,6 +17,8 @@ namespace FreeScript
 
         public GameObject()
         {
+            this.SetLocation(new Vector2D { X = 0, Y = 0 });
+            this.SetSize(new Vector2D { X = 100, Y = 100 });
             Object.BackColor = Color.DarkBlue;
             Object.Show();
         }
@@ -61,27 +63,6 @@ namespace FreeScript
                 Position.Y = 500 - Size.Y;
             }
             this.UpdateLocation();
-        }
-
-        public bool ofCourse()
-        {
-            if (Position.X < 0)
-            {
-                return true;
-            }
-            if (Position.Y < 0)
-            {
-                return true;
-            }
-            if (Position.X + Size.X >= 500)
-            {
-                return true;
-            }
-            else if (Position.Y >= 500)
-            {
-                return true;
-            }
-            return false;
         }
 
         void UpdateLocation()
