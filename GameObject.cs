@@ -24,7 +24,6 @@ namespace FreeScript
         public void Update()
         {
             ImOutOfBound();
-            this.UpdateLocation();
             this.UpdateSize();
         }
 
@@ -48,14 +47,39 @@ namespace FreeScript
             {
                 Position.Y = 0;
             }
-            if (Position.X > 500)
+            if (Position.X+Size.X >= 500 )
             {
-                Position.X = 500;
+                Position.X = 500 - Size.X;
             }
-            if (Position.Y > 500)
+            else if (Position.Y >= 500)
             {
                 Position.Y = 500;
             }
+            else
+            {
+                this.UpdateLocation();
+            }
+        }
+
+        public bool ofCourse()
+        {
+            if (Position.X < 0)
+            {
+                return true;
+            }
+            if (Position.Y < 0)
+            {
+                return true;
+            }
+            if (Position.X + Size.X >= 500)
+            {
+                return true;
+            }
+            else if (Position.Y >= 500)
+            {
+                return true;
+            }
+            return false;
         }
 
         void UpdateLocation()
