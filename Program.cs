@@ -41,7 +41,7 @@ namespace FreeScript
         {
             Form Render = new Form();
             Render.Size = new Size(500,500);
-            Render.FormBorderStyle = FormBorderStyle.None;
+            Render.Text = "FreeScript Engine  0.2";
             Render.StartPosition = FormStartPosition.CenterScreen;
             Render.Show();
             return Render;
@@ -59,22 +59,5 @@ namespace FreeScript
                 Objects.Update();
             }
         }
-
-        public static  bool Compare(Vector2D First, Vector2D First_Size, Vector2D Second,Vector2D Second_Size)
-        {
-            if((First.X+ First_Size.X+ Second_Size.X) == (Second.X + Second_Size.X))
-            {
-                if((First.Y + First_Size.Y) == (Second.Y + Second_Size.Y))
-                { 
-                return true;
-                }
-                else
-                {
-                return false;
-                }
-            }
-            return false;
-        }
-
     }
 }

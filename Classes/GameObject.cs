@@ -10,7 +10,7 @@ namespace FreeScript
 {
     class GameObject
     {
-        private String Name;
+        private String Name = "Objeto";
         private Panel Object = new Panel();
         private Vector2D Position;
         private Vector2D Size;
