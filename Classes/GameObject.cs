@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FreeScript.Managers;
 
 namespace FreeScript
 {
@@ -14,6 +15,7 @@ namespace FreeScript
         private Panel Object = new Panel();
         private Vector2D Position;
         private Vector2D Size;
+        public bool isDebugObject = false;
         Form forms;
 
         public GameObject(Form frorms)
@@ -36,6 +38,30 @@ namespace FreeScript
         {
             ImOutOfBound();
             this.UpdateSize();
+            if(isDebugObject)
+            {
+                this.DebugMove();
+            }
+        }
+
+        private void DebugMove()
+        {
+            if(InputManager.GetKey(Keys.W))
+            {
+                this.AddLocation(new Vector2D() { X = 0 ,Y= -1},5);
+            }
+            if(InputManager.GetKey(Keys.S))
+            {
+                this.AddLocation(new Vector2D() { X = 0, Y = 1 }, 5);
+            }
+            if (InputManager.GetKey(Keys.D))
+            {
+                this.AddLocation(new Vector2D() { X = 1, Y = 0 }, 5);
+            }
+            if (InputManager.GetKey(Keys.A))
+            {
+                this.AddLocation(new Vector2D() { X = -1, Y = 0 }, 5);
+            }
         }
 
         public void SetName( String Nome)
@@ -108,6 +134,13 @@ namespace FreeScript
             this.Position.X += Info.X;
             this.Position.Y += Info.Y;
         }
+
+        public void AddLocation(Vector2D Info, float Multiplier)
+        {
+            this.Position.X += (int)(Info.X* Multiplier);
+            this.Position.Y += (int)(Info.Y* Multiplier);
+        }
+
         public Panel ReturnGameObject()
         {
             return this.Object;

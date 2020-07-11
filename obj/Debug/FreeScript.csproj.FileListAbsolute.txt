@@ -4,3 +4,10 @@ C:\Users\Diego\source\Dab\FreeScript\bin\Debug\FreeScript.pdb
 C:\Users\Diego\source\Dab\FreeScript\obj\Debug\FreeScript.csprojAssemblyReference.cache
 C:\Users\Diego\source\Dab\FreeScript\obj\Debug\FreeScript.exe
 C:\Users\Diego\source\Dab\FreeScript\obj\Debug\FreeScript.pdb
+C:\Projetos\FreeScript\bin\Debug\FreeScript.exe.config
+C:\Projetos\FreeScript\bin\Debug\FreeScript.exe
+C:\Projetos\FreeScript\bin\Debug\FreeScript.pdb
+C:\Projetos\FreeScript\obj\Debug\FreeScript.csprojAssemblyReference.cache
+C:\Projetos\FreeScript\obj\Debug\FreeScript.csproj.CoreCompileInputs.cache
+C:\Projetos\FreeScript\obj\Debug\FreeScript.exe
+C:\Projetos\FreeScript\obj\Debug\FreeScript.pdb

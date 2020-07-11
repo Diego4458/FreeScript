@@ -8,14 +8,7 @@ namespace FreeScript.Managers
 {
     class CommandManager
     {
-        ObjectManager Objects;
-
-        public CommandManager(ObjectManager Object)
-        {
-            Objects = Object;
-        }
-
-        public String HanddleCommands(String Cmd)
+        public static String HanddleCommands(String Cmd)
         {
             if (Cmd.Length > 0)
             {
@@ -25,16 +18,16 @@ namespace FreeScript.Managers
                     case "Add":
                         if(Destrinchado.Count>1)
                         { 
-                        Objects.Add(Destrinchado[1]);
+                        ObjectManager.Add(Destrinchado[1]);
                         }
                         else
                         {
-                        Objects.Add();
+                            ObjectManager.Add();
                         }
                         break;
                     case "Find":
                         {
-                            GameObject Object = Objects.FindObjectByName(Destrinchado[1]);
+                            GameObject Object = ObjectManager.FindObjectByName(Destrinchado[1]);
                                 string frase = string.Format("Objeto Encontrado\nNome:{0}\nLolcalização: X:{1},Y:{2}\nTamanho: X:{3} Y:{4}",
                                     Object.GetName(),
                                     Object.GetLocation().X, Object.GetLocation().Y, Object.GetSize().X, Object.GetSize().Y);
@@ -43,7 +36,7 @@ namespace FreeScript.Managers
                         break;
                     case "Move":
                         {
-                            GameObject Object = Objects.FindObjectByName(Destrinchado[1]);
+                            GameObject Object = ObjectManager.FindObjectByName(Destrinchado[1]);
                             Object.AddLocation(new Vector2D() { X = Convert.ToInt32(Destrinchado[2]), Y = Convert.ToInt32(Destrinchado[3]) });
                                 string frase = string.Format("Objeto Movido \nNome:{0}\nLolcalização: X:{1},Y:{2}",
                                     Object.GetName(),
@@ -53,7 +46,7 @@ namespace FreeScript.Managers
                         break;
                     case "Size":
                         {
-                            GameObject Object = Objects.FindObjectByName(Destrinchado[1]);
+                            GameObject Object = ObjectManager.FindObjectByName(Destrinchado[1]);
                             Object.SetSize(new Vector2D() { X = Convert.ToInt32(Destrinchado[2]), Y = Convert.ToInt32(Destrinchado[3]) });
                             string frase = string.Format("Objeto \nNome:{0}\nSize: X:{1},Y:{2}",
                                 Object.GetName(),
@@ -63,7 +56,7 @@ namespace FreeScript.Managers
                         break;
                     case "List":
                         {
-                            GameObject[] Objetos = Objects.GetAll();
+                            GameObject[] Objetos = ObjectManager.GetAll();
                             if(Objetos != null)
                             {
                                 Console.WriteLine(String.Format("Foram Encontrados {0} Objetos No Total", Objetos.Length));
@@ -78,6 +71,14 @@ namespace FreeScript.Managers
                             }
                         }
                         break;
+                    case "Code":
+                        {
+                            if (Destrinchado.Count <= 1)
+                                break;
+                            GameObject objeto = ObjectManager.FindObjectByName(Destrinchado[1]);
+                            objeto.isDebugObject = true;
+                        }
+                        break;
                     default:
                         Console.WriteLine("[Error]Commando Invalido");
                         break;
@@ -85,6 +86,7 @@ namespace FreeScript.Managers
             }
             return String.Empty;
         }
+
         static private List<String> GetCmd(String cmd)
         {
             string comp = string.Empty;

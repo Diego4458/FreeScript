@@ -10,16 +10,20 @@ namespace FreeScript.Managers
     class ObjectManager
     {
 
-        public List<GameObject> Objects = new List<GameObject>();
+        private static List<GameObject> Objects = new List<GameObject>();
 
-        private Form Screen;
+        private static Form Screen;
 
-        public ObjectManager(Form screen)
+        public ObjectManager()
         {
-            Screen = screen;
         }
 
-        public void Add(String Name)
+        public static void Init(Form Screen)
+        {
+            ObjectManager.Screen = Screen;
+        }
+
+        public static void Add(String Name)
         {
             GameObject Novo = new GameObject(Screen);
             Novo.SetName(Name);
@@ -27,14 +31,14 @@ namespace FreeScript.Managers
             Objects.Add(Novo);
         }
 
-        public void Add()
+        public static void Add()
         {
             GameObject Novo = new GameObject(Screen);
             Screen.Controls.Add(Novo.ReturnGameObject());
             Objects.Add(Novo);
         }
 
-        public void Update()
+        public static void Update()
         {
             for(int x=0;x< Objects.Count; x++)
             {
@@ -42,7 +46,7 @@ namespace FreeScript.Managers
             }
         }
 
-        public GameObject FindObjectByName(String Nome)
+        public static GameObject FindObjectByName(String Nome)
         {
             for(int x=0;x< Objects.Count;x++)
             {
@@ -54,7 +58,7 @@ namespace FreeScript.Managers
             return null;
         }
 
-        public GameObject[] FindObjectsByName(String Nome)
+        public static GameObject[] FindObjectsByName(String Nome)
         {
             List<GameObject> objetos = new List<GameObject>();
             for (int x = 0; x < Objects.Count; x++)
@@ -72,7 +76,7 @@ namespace FreeScript.Managers
         }
 
 
-        public GameObject[] GetAll()
+        public static GameObject[] GetAll()
         {
             if (Objects.Count > 0)
             {

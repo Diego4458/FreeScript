@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Classes\GameObject.cs" />
     <Compile Include="Managers\CommandManager.cs" />
+    <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\ObjectManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
 using FreeScript.Managers;
+using System.Resources;
 
 namespace FreeScript
 {
@@ -14,9 +15,8 @@ namespace FreeScript
     {
 
         public static String Cmd = string.Empty;
+        public static String Title = "FreeScript Engine  0.2 - {0} FPS";
 
-
-        static List<GameObject> Objects;
         static void Main(string[] args)
         {
             Console.Title = "FreeScript Engine";
@@ -50,14 +50,24 @@ namespace FreeScript
         static void InitEngine()
         {
             Form Render = Setup();
-            ObjectManager Objects = new ObjectManager(Render);
-            CommandManager CmdManager = new CommandManager(Objects);
-            while(true)
+            ObjectManager.Init(Render);
+            Render.KeyUp += InputManager.Render_KeyUp;
+            Render.KeyDown += InputManager.Render_KeyDown;
+            Render.KeyPress += InputManager.Render_KeyPress;
+
+            while (true)
             {
                 Application.DoEvents();
-                Cmd = CmdManager.HanddleCommands(Cmd);
-                Objects.Update();
+                Cmd = CommandManager.HanddleCommands(Cmd);
+                ObjectManager.Update();
+                if(InputManager.GetCurrentKey() != null)
+                {
+                    Console.WriteLine(InputManager.GetCurrentKey());
+                }
+                InputManager.Reset();
             }
         }
+
+        
     }
 }
