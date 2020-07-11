@@ -14,13 +14,17 @@ namespace FreeScript.Managers
 
         private static Form Screen;
 
-        public ObjectManager()
+        private static Label TextBox = new Label();
+
+        public static void TextUpdate(string Texto)
         {
+            TextBox.Text = Texto;
         }
 
         public static void Init(Form Screen)
         {
             ObjectManager.Screen = Screen;
+            Screen.Controls.Add(TextBox);
         }
 
         public static void Add(String Name)

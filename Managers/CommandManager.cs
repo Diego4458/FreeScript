@@ -76,7 +76,14 @@ namespace FreeScript.Managers
                             if (Destrinchado.Count <= 1)
                                 break;
                             GameObject objeto = ObjectManager.FindObjectByName(Destrinchado[1]);
+                            if(objeto != null)
+                            { 
                             objeto.isDebugObject = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("[Erro]Objeto Não Encontrado");
+                            }
                         }
                         break;
                     default:

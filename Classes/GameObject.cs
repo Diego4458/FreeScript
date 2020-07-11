@@ -76,6 +76,7 @@ namespace FreeScript
 
         void ImOutOfBound()
         {
+            ObjectManager.TextUpdate(string.Format("Sized X:{0} Y:{1}", this.Position.X + Size.X, this.Position.Y + Size.Y));
             if (Position.X < 0)
             {
                 Position.X = 0;
@@ -84,19 +85,20 @@ namespace FreeScript
             {
                 Position.Y = 0;
             }
-            else if (Position.Y + Size.X >= 500 && Position.X + Size.X >= 500)
+            else if (Position.Y + Size.Y > forms.Height - 35 && Position.X + Size.X > forms.Width-15)
             {
-                Position.X = 500 - Size.X;
-                Position.Y = 500 - Size.Y;
+                Position.X -= ((forms.Width-15) - (Size.X + Position.X)) * -1;
+                Position.Y -= ((forms.Height - 35) - (Size.Y + Position.Y)) * -1;
             }
-            else if (Position.X + Size.X >= 500)
+            else if (Position.X + Size.X > forms.Width - 15)
             {
-                Position.X = 500 - Size.X;
+                Position.X -= ((forms.Width - 15) - (Size.X+Position.X)) * -1;
             }
-            else if (Position.Y + Size.Y >= 500)
-            {
-                Position.Y = 500 - Size.Y;
+            else if (Position.Y + Size.Y > forms.Height - 35)
+            {   
+                Position.Y -= ((forms.Height - 35) - (Size.Y + Position.Y)) * -1;
             }
+
             this.UpdateLocation();
         }
 

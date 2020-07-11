@@ -1,2 +1,7 @@
 
 *.lock
+.vs/FreeScript/v16/.suo
+bin/Debug/FreeScript.exe
+bin/Debug/FreeScript.pdb
+obj/Debug/FreeScript.exe
+obj/Debug/FreeScript.pdb

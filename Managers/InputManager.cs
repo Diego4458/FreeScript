@@ -53,7 +53,10 @@ namespace FreeScript.Managers
 
         public static bool GetKey(Keys key)
         {
-
+            if(KeyUpArgs != null && KeyUpArgs.KeyCode == key)
+            {
+                return true;
+            }
             if (KeyDownArgs != null && KeyDownArgs.KeyCode == key)
             {
                 return true;
